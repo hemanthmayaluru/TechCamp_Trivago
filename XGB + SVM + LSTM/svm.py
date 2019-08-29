@@ -192,64 +192,22 @@ print("-------------------------------------------------------------------------
 
 # Implementation of ML models on the data representations
 
-# Xtreme Gradient Boosting
-
-# XGB -> count vector
-xgb_count = classification_accuracy(xgboost.XGBClassifier(), X_train_count.tocsc(), Y_train, X_test_count.tocsc(), Y_test)
-print("1. XGB -> count vec -> {:0.4f}".format(xgb_count*100))
-'''
-xgb_count_test_run = run_model(xgboost.XGBClassifier(), X_train_count.tocsc(), Y_train, X_test_count.tocsc(), Y_test)
-xgb_count_test_run = encoder.inverse_transform(xgb_count_test_run)
-for i in xgb_count_test_run:
-    print (i)
-'''
-get_confusion_matrix(xgboost.XGBClassifier(), X_train_count.tocsc(), Y_train, X_test_count.tocsc(), Y_test, class_names)
-plt.savefig(os.path.join('CM_xgb_count.png'), dpi=300, format='png', bbox_inches='tight')   
-#plt.show()
-
-print("------------------------------------------------------------------------------")
-
-# XGB -> word tfidf
-xgb_word = classification_accuracy(xgboost.XGBClassifier(), X_train_tfidf.tocsc(), Y_train, X_test_tfidf.tocsc(), Y_test)
-print("2. XGB -> word tfidf -> {:0.4f}".format(xgb_word*100))
-'''
-xgb_word_test_run = run_model(xgboost.XGBClassifier(), X_train_tfidf.tocsc(), Y_train, X_test_tfidf.tocsc(), Y_test)
-xgb_word_test_run = encoder.inverse_transform(xgb_word_test_run)
-for i in xgb_word_test_run:
-    print (i)
-'''
-get_confusion_matrix(xgboost.XGBClassifier(), X_train_tfidf.tocsc(), Y_train, X_test_tfidf.tocsc(), Y_test, class_names)
-plt.savefig(os.path.join('CM_xgb_word.png'), dpi=300, format='png', bbox_inches='tight')   
-#plt.show()
-
-print("------------------------------------------------------------------------------")
-
-# XGB -> char tfidf
-xgb_char = classification_accuracy(xgboost.XGBClassifier(), X_train_ngram_char.tocsc(), Y_train, X_test_ngram_char.tocsc(), Y_test)
-print("3. XGB -> char tfidf -> {:0.4f}".format(xgb_char*100))
-'''
-xgb_char_test_run = run_model(xgboost.XGBClassifier(), X_train_ngram_char.tocsc(), Y_train, X_test_ngram_char.tocsc(), Y_test)
-xgb_char_test_run = encoder.inverse_transform(xgb_char_test_run)
-for i in xgb_char_test_run:
-    print (i)
-'''
-get_confusion_matrix(xgboost.XGBClassifier(), X_train_ngram_char.tocsc(), Y_train, X_test_ngram_char.tocsc(), Y_test, class_names)
-plt.savefig(os.path.join('CM_xgb_char.png'), dpi=300, format='png', bbox_inches='tight')   
-#plt.show()
-
-print("------------------------------------------------------------------------------")
-
 # Support Vector Machine (SVM)
 
 # SVM-> count vector
 svm_count = classification_accuracy(svm.SVC(gamma='scale', kernel='linear'), X_train_count, Y_train, X_test_count, Y_test)
-print("4. SVM-> count vec-> {:0.4f}".format(svm_count*100))
+print("1. SVM-> count vec-> {:0.4f}".format(svm_count*100))
+
 '''
+code for running the model on test dataset
+
 svm_count_test_run = run_model(svm.SVC(gamma='scale', kernel='linear'), X_train_count, Y_train, X_test_count, Y_test)
 svm_count_test_run = encoder.inverse_transform(svm_count_test_run)
 for i in svm_count_test_run:
     print (i)
 '''
+
+# print and save confusion matrix
 get_confusion_matrix(svm.SVC(gamma='scale', kernel='linear'), X_train_count, Y_train, X_test_count, Y_test, class_names)
 plt.savefig(os.path.join('CM_svm_count.png'), dpi=300, format='png', bbox_inches='tight')   
 #plt.show()
@@ -257,30 +215,40 @@ plt.savefig(os.path.join('CM_svm_count.png'), dpi=300, format='png', bbox_inches
 
 print("------------------------------------------------------------------------------")
 
-# SVM-> word tfidf
+# SVM-> word tfidf vector
 svm_word = classification_accuracy(svm.SVC(gamma='scale', kernel='linear'), X_train_tfidf, Y_train, X_test_tfidf, Y_test)
-print("5. SVM-> word tfidf-> {:0.4f}".format(svm_word*100))
+print("2. SVM-> word tfidf-> {:0.4f}".format(svm_word*100))
+
 '''
+code for running the model on test dataset
+
 svm_word_test_run = run_model(svm.SVC(gamma='scale', kernel='linear'), X_train_tfidf, Y_train, X_test_tfidf, Y_test)
 svm_word_test_run = encoder.inverse_transform(svm_word_test_run)
 for i in svm_word_test_run:
     print (i)
 '''
+
+# print and save confusion matrix
 get_confusion_matrix(svm.SVC(gamma='scale', kernel='linear'), X_train_count, Y_train, X_test_count, Y_test, class_names)
 plt.savefig(os.path.join('CM_svm_word.png'), dpi=300, format='png', bbox_inches='tight')   
 #plt.show()
 
 print("------------------------------------------------------------------------------")
 
-# SVM-> char tfidf
+# SVM-> char tfidf vector
 svm_char = classification_accuracy(svm.SVC(gamma='scale', kernel='linear'), X_train_ngram_char.tocsc(), Y_train, X_test_ngram_char.tocsc(), Y_test)
-print("6. SVM-> char tfidf-> {:0.4f}".format(svm_char*100))
+print("3. SVM-> char tfidf-> {:0.4f}".format(svm_char*100))
+
 '''
+code for running the model on test dataset
+
 svm_char_test_run = run_model(svm.SVC(gamma='scale', kernel='linear'), X_train_ngram_char.tocsc(), Y_train, X_test_ngram_char.tocsc(), Y_test)
 svm_char_test_run = encoder.inverse_transform(svm_char_test_run)
 for i in svm_char_test_run:
     print (i)
 '''
+
+# print and save confusion matrix
 get_confusion_matrix(svm.SVC(gamma='scale', kernel='linear'), X_train_ngram_char.tocsc(), Y_train, X_test_ngram_char.tocsc(), Y_test, class_names)
 plt.savefig(os.path.join('CM_svm_char.png'), dpi=300, format='png', bbox_inches='tight')   
 #plt.show()
@@ -290,22 +258,20 @@ plt.savefig(os.path.join('CM_svm_char.png'), dpi=300, format='png', bbox_inches=
 # visualize and compare prediction results
 
 # save accuracy metrics 
-xgb_count = round(xgb_count*100, 4)
-xgb_word = round(xgb_word*100, 4)
-xgb_char = round(xgb_char*100, 4)
+
 svm_count = round(svm_count*100, 4)
 svm_word = round(svm_word*100, 4)
 svm_char = round(svm_char*100, 4)
 
 # plot accuracy with labels
-X_data = ['xgb_char', 'xgb_word', 'xgb_count', 'svm_char', 'svm_word', 'svm_count']
-Y_data = [xgb_char, xgb_word, xgb_count, svm_char, svm_word, svm_count]
+X_data = ['SVM_char_vector', 'SVM_word_vector', 'SVM_count_vector']
+Y_data = [svm_char, svm_word, svm_count]
 
 fig, ax = plt.subplots()    
 width = 0.3 
 index = np.arange(len(Y_data))
 ax.barh(index, Y_data, width, align='center', color='blue')
-plt.title('Accuracy Measures', fontsize=20)
+plt.title('Accuracy Measures', fontsize=18)
 plt.ylabel('Model', fontsize=15)
 plt.xlabel('Accuracy', fontsize=15)
 plt.xlim(80, 100)
@@ -315,8 +281,6 @@ for i, v in enumerate(Y_data):
     ax.text(v + 0.15, i, str(v), color='black', fontsize=10)
 plt.savefig(os.path.join('accuracy_comparison.png'), dpi=300, format='png', bbox_inches='tight')   
 #plt.show()
-
-###########################################################################
 
 print("------------------------------------------------------------------------------")
 
